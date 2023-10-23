@@ -2,7 +2,8 @@ React Page for ORT Project
 
 ### TODO:
 
-- [ ] Show choferes
+- [ x ] Show choferes
 - [ ] Login / Register
 - [ ] 2FA
 - [ ] Cart
+- [ ] Buying functionality
