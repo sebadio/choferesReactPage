@@ -6,12 +6,14 @@ import { createContext } from "react";
 import { UserContextProps } from "../../interfaces";
 
 export const UserContext = createContext<UserContextProps>({
-  choferes: [],
   cart: [],
-  username: "",
+  choferes: [],
   handleAddToCart: () => {},
   handleSubtractQuantity: () => {},
   setChoferes: () => {},
+  setToken: () => {},
+  token: "",
+  username: "",
 });
 
 export const UserProvider: React.FC<{ children: ReactNode }> = ({
@@ -19,16 +21,19 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const { cart, handleAddToCart, handleSubtractQuantity } = useCart();
   const [choferes, setChoferes] = useState<ChoferInterface[]>([]);
+  const [token, setToken] = useState<string>("");
 
   return (
     <UserContext.Provider
       value={{
-        choferes,
-        username: "",
         cart,
+        choferes,
         handleAddToCart,
         handleSubtractQuantity,
         setChoferes,
+        setToken,
+        token,
+        username: "",
       }}
     >
       {children}

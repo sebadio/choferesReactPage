@@ -8,7 +8,7 @@ const ChoferItem = ({ Chofer }: { Chofer: ChoferInterface }) => {
   const { id, image, name, price } = Chofer;
   return (
     <article key={id}>
-      <img src={image} alt="" />
+      <img width={116} height={116} src={image} alt="" />
       <header>
         <h2>{name}</h2>
         <p>${price}</p>
