@@ -1,5 +1,4 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -9,30 +8,7 @@
   box-sizing: border-box;
 }
 
-nav {
-  display: flex;
-  padding: 1rem;
-  background-color: #000;
-  color: #fff;
-  position: fixed;
-  top: 0;
-  z-index: 1;
-  left: 0;
-  width: 100vw;
-}
-
-nav ul {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
-  margin: 0;
-  gap: 1rem;
-  padding: 0;
-}
-
 section {
-  width: 80vw;
   display: grid;
   grid-template-columns: repeat(auto-fit, 300px);
   justify-content: center;

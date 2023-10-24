@@ -1,27 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+
+import { Cart, Login, Register, Root } from "./Pages";
+import { UserProvider, Navbar } from "./components";
+
 import "./index.css";
+import App from "./App";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Register, Login, App } from "./Pages";
-
-const router = createBrowserRouter([
-  { path: "/", element: <App /> },
-  { path: "/login", element: <Login /> },
-  { path: "/register", element: <Register /> },
-]);
+const routes = [
+  { path: "/", element: <Root />, name: "Home" },
+  { path: "/cart", element: <Cart />, name: "Cart" },
+  { path: "/login", element: <Login />, name: "Login" },
+  { path: "/register", element: <Register />, name: "Register" },
+];
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <nav>
-      <ul>
-        <li>Tienda</li>
-        <li>Carrito</li>
-        <li>Log in</li>
-        <li>Register</li>
-      </ul>
-    </nav>
-
-    <RouterProvider router={router} />
+    <UserProvider>
+      <BrowserRouter>
+        <Navbar routes={routes} />
+        <App routes={routes} />
+      </BrowserRouter>
+    </UserProvider>
   </React.StrictMode>
 );

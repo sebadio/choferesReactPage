@@ -1,5 +1,6 @@
 import Register from "./Register/Register";
 import Login from "./Login/Login";
-import App from "./Root/App";
+import Root from "./Root/Root";
+import Cart from "./Cart/Cart";
 
-export { Register, Login, App };
+export { Cart, Register, Login, Root };
