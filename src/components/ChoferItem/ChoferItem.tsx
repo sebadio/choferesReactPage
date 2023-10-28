@@ -55,7 +55,7 @@ const ChoferItem = ({ Chofer }: { Chofer: ChoferInterface }) => {
         }}
       />
       <header>
-        <h2>{name}</h2>
+        <h3>{name}</h3>
         <p>${price}</p>
       </header>
 

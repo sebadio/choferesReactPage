@@ -9,6 +9,7 @@ import "./Root.css";
 
 function Root() {
   const { choferes, setChoferes } = useContext(UserContext);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChoferes = async () => {
     try {
@@ -26,8 +27,6 @@ function Root() {
     }
   };
 
-  const [error, setError] = useState("");
-
   if (choferes.length === 0 && !error) {
     handleChoferes();
   }
@@ -35,6 +34,8 @@ function Root() {
   return (
     <main>
       <h1>Tienda</h1>
+
+      {error && <p>{error}</p>}
 
       <section>
         {choferes.length === 0

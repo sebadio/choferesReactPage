@@ -38,7 +38,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
   return (
     <UserContext.Provider
       value={{
-        BASE_URL: "https://192.168.1.88",
+        BASE_URL: "https://tienda-obli.sebasdiaz.com",
         cart,
         choferes,
         handleAddToCart,

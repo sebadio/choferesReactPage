@@ -12,7 +12,7 @@ export const CartItem = ({
   return (
     <li key={item.Chofer.id}>
       <span>
-        <strong>{item.Chofer.name}</strong> ~ {item.Chofer.price} x{" "}
+        <strong>{item.Chofer.name}</strong> ~ ${item.Chofer.price} x{" "}
         {item.quantity}
       </span>
 
