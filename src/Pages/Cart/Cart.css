@@ -51,3 +51,10 @@
 #subtractBtn {
   border-radius: 0 0 1rem 1rem;
 }
+
+.cartContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}

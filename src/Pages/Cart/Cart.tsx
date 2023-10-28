@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../../components/UserProvider/UserProvider";
-import { CartItem } from "../../interfaces";
+import { CartItemInterface } from "../../interfaces";
+import { UserContext, CartForm, CartItem } from "../../components/";
 import "./Cart.css";
 
 const Cart = () => {
@@ -9,49 +9,36 @@ const Cart = () => {
   const { cart, handleAddToCart, handleSubtractQuantity } =
     useContext(UserContext);
 
+  useEffect(() => {}, []);
+
   useEffect(() => {
     let total: number = 0;
-    cart.forEach((item: CartItem) => {
+    cart.forEach((item: CartItemInterface) => {
       total += parseInt(item.Chofer.price) * item.quantity;
     });
     setTotal(total);
+    localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
   return (
     <main>
       <h1>Cart</h1>
       <p style={{ float: "left" }}>Total: ${total}</p>
-      <ul id="cartList">
-        {cart.map((item: CartItem) => {
-          return (
-            <li key={item.Chofer.id}>
-              <span>
-                <strong>{item.Chofer.name}</strong> ~ {item.Chofer.price} x{" "}
-                {item.quantity}
-              </span>
-
-              <div>
-                <button
-                  id="addBtn"
-                  onClick={() => {
-                    handleAddToCart(item.Chofer);
-                  }}
-                >
-                  +
-                </button>
-                <button
-                  id="subtractBtn"
-                  onClick={() => {
-                    handleSubtractQuantity(item.Chofer);
-                  }}
-                >
-                  -
-                </button>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="cartContainer">
+        <ul id="cartList">
+          {cart.map((item: CartItemInterface) => {
+            return (
+              <CartItem
+                handleAddToCart={handleAddToCart}
+                handleSubtractQuantity={handleSubtractQuantity}
+                item={item}
+                key={item.Chofer.id}
+              />
+            );
+          })}
+        </ul>
+        <CartForm />
+      </div>
     </main>
   );
 };

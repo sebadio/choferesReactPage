@@ -1,12 +1,20 @@
-import { CartItem, ChoferInterface } from "./";
+import { CartItemInterface, ChoferInterface } from "./";
 
 export interface UserContextProps {
-  cart: CartItem[];
+  BASE_URL: string;
+  cart: CartItemInterface[];
   choferes: ChoferInterface[];
   handleAddToCart: (chofer: ChoferInterface) => void;
   handleSubtractQuantity: (chofer: ChoferInterface) => void;
+  loading: boolean;
+  loggedIn: boolean;
   setChoferes: (choferes: ChoferInterface[]) => void;
+  setLoading: (loading: boolean) => void;
+  setLoggedIn: (loggedIn: boolean) => void;
+  setTfa: (tfa: boolean) => void;
   setToken: (token: string) => void;
+  setUsername: (username: string) => void;
+  tfa: boolean;
   token: string;
   username: string;
 }

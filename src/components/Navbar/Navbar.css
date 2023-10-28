@@ -24,3 +24,24 @@ nav ul {
 nav ul li a {
   color: whitesmoke;
 }
+
+.placeholder {
+  width: 6rem;
+  height: 1.5rem;
+  background: rgba(255, 255, 255, 0.55);
+  animation: placeholder 1.5s infinite;
+}
+
+/* animation for a text placeholder */
+
+@keyframes placeholder {
+  0% {
+    background: rgba(255, 255, 255, 0.55);
+  }
+  50% {
+    background: rgba(255, 255, 255, 0.35);
+  }
+  100% {
+    background: rgba(255, 255, 255, 0.55);
+  }
+}
