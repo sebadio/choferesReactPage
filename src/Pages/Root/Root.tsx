@@ -1,6 +1,10 @@
 import { useContext, useState } from "react";
 import { ChoferInterface } from "../../interfaces";
-import { ChoferItem, UserContext } from "../../components";
+import {
+  ChoferItem,
+  UserContext,
+  ChoferItemPlaceholder,
+} from "../../components";
 import "./Root.css";
 
 function Root() {
@@ -32,15 +36,17 @@ function Root() {
     <main>
       <h1>Tienda</h1>
 
-      {choferes.length === 0 ? (
-        <p>{error || "Cargando..."}</p>
-      ) : (
-        <section>
-          {choferes.map((currentChofer: ChoferInterface) => {
-            return <ChoferItem key={currentChofer.id} Chofer={currentChofer} />;
-          })}
-        </section>
-      )}
+      <section>
+        {choferes.length === 0
+          ? Array.from({ length: 20 }).map((_, index) => {
+              return <ChoferItemPlaceholder key={index} />;
+            })
+          : choferes.map((currentChofer: ChoferInterface) => {
+              return (
+                <ChoferItem key={currentChofer.id} Chofer={currentChofer} />
+              );
+            })}
+      </section>
     </main>
   );
 }

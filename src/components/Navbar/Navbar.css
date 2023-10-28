@@ -29,17 +29,14 @@ nav ul li a {
   width: 6rem;
   height: 1.5rem;
   background: rgba(255, 255, 255, 0.55);
-  animation: placeholder 1.5s infinite;
+  animation: placeholder 1.5s infinite alternate;
 }
 
 /* animation for a text placeholder */
 
 @keyframes placeholder {
   0% {
-    background: rgba(255, 255, 255, 0.55);
-  }
-  50% {
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.15);
   }
   100% {
     background: rgba(255, 255, 255, 0.55);
