@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { CartItem, ChoferInterface } from "../interfaces";
+import { CartItemInterface, ChoferInterface } from "../interfaces";
 
 export const useCart = () => {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cart, setCart] = useState<CartItemInterface[]>([]);
 
   const handleAddToCart = (chofer: ChoferInterface) => {
     if (cart.some((item) => item.Chofer.id === chofer.id)) {
@@ -19,7 +19,7 @@ export const useCart = () => {
   };
 
   const handleSubtractQuantity = (chofer: ChoferInterface) => {
-    const newCart: CartItem[] = cart.map((item: CartItem) => {
+    const newCart: CartItemInterface[] = cart.map((item: CartItemInterface) => {
       if (item.Chofer.id === chofer.id) {
         item.quantity -= 1;
       }
@@ -27,7 +27,7 @@ export const useCart = () => {
       return item;
     });
 
-    setCart(newCart.filter((item: CartItem) => item.quantity > 0));
+    setCart(newCart.filter((item: CartItemInterface) => item.quantity > 0));
   };
 
   return {
