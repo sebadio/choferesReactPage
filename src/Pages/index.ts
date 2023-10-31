@@ -1,7 +1,7 @@
-import Register from "./Register/Register";
-import Login from "./Login/Login";
-import Root from "./Root/Root";
-import Cart from "./Cart/Cart";
-import UserProfile from "./UserProfile/UserProfile";
+import Register from "./Register";
+import Login from "./Login";
+import Root from "./Root";
+import Cart from "./Cart";
+import UserProfile from "./UserProfile";
 
 export { Cart, Login, Register, Root, UserProfile };

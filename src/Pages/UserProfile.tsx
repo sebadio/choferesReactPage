@@ -1,35 +1,57 @@
 import { useContext, useEffect } from "react";
-import { UserContext } from "../../components";
-import { useQr, useUserAuth } from "../../hooks";
+import { UserContext } from "../components";
+import { useQr, useUserAuth } from "../hooks";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   const { username, tfa, loggedIn } = useContext(UserContext);
   const { handleRequestQr, handleVerifyQr, qrcode, handleDisableTfa } = useQr();
   const { logout } = useUserAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!username || !loggedIn) {
-      window.location.href = "/login";
+      navigate("/login");
     }
   }, [loggedIn, username]);
 
   return (
-    <main>
-      <h1>{username}'s Profile</h1>
-
+    <main className="container">
+      <h2
+        style={{
+          display: "inline-block",
+          marginRight: "1rem",
+          textTransform: "capitalize",
+        }}
+      >
+        {username}'s Profile
+      </h2>
+      <a href="#" role="button" onClick={logout}>
+        Log Out
+      </a>
       {tfa ? (
         <>
           <p>2FA is enabled</p>
 
-          <form onSubmit={handleDisableTfa}>
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="password" />
+          <details>
+            <summary>Want to disable it?</summary>
+            <form onSubmit={handleDisableTfa}>
+              <label htmlFor="password">Password</label>
+              <input type="password" name="password" id="password" />
 
-            <button type="submit">Disable 2FA</button>
-          </form>
+              <button type="submit">Disable 2FA</button>
+            </form>
+          </details>
         </>
       ) : (
-        <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
           {qrcode === "" ? (
             <>
               <div>Setup 2FA</div>
@@ -74,8 +96,6 @@ const UserProfile = () => {
           )}
         </div>
       )}
-
-      <button onClick={logout}>Log Out</button>
     </main>
   );
 };

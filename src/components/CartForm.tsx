@@ -1,7 +1,6 @@
 import { useContext } from "react";
-import { UserContext } from "..";
-import { CartItemInterface } from "../../interfaces";
-import "./CartForm.css";
+import { UserContext } from ".";
+import { CartItemInterface } from "../interfaces";
 
 interface CartFormProps {
   order_content: CartItemInterface[];
@@ -76,18 +75,26 @@ export const CartForm = () => {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <label htmlFor="name">Name</label>
-      <input type="text" name="name" id="name" />
+    <form className="container" onSubmit={handleFormSubmit}>
+      <label htmlFor="name">
+        Name
+        <input type="text" name="name" id="name" />
+      </label>
 
-      <label htmlFor="email">Email</label>
-      <input type="email" name="email" id="email" />
+      <label htmlFor="email">
+        Email
+        <input type="email" name="email" id="email" />
+      </label>
 
-      <label htmlFor="address">Address</label>
-      <input type="text" name="address" id="address" />
+      <label htmlFor="address">
+        Address
+        <input type="text" name="address" id="address" />
+      </label>
 
-      <label htmlFor="city">City</label>
-      <input type="text" name="city" id="city" />
+      <label htmlFor="city">
+        City
+        <input type="text" name="city" id="city" />
+      </label>
 
       <button type="submit">Submit</button>
     </form>

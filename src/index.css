@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -59,4 +59,71 @@ button:focus-visible {
 
 main {
   width: 80vw;
+} */
+
+.choferes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  justify-content: center;
+  gap: 2rem;
+}
+
+.choferes-grid > article {
+  margin: 0;
+}
+
+.choferes-grid > article > header {
+  display: flex;
+  justify-content: center;
+}
+
+.choferes-grid > article > header > img {
+  height: 100%;
+  width: auto;
+  border-radius: 50%;
+}
+
+.choferes-grid > article > h2 {
+  margin: 0;
+}
+
+.choferes-grid > article > p {
+  margin: 0;
+}
+
+.m {
+  margin-right: 1rem;
+}
+
+.cartList {
+  overflow-y: scroll;
+  max-height: 70vh;
+  scrollbar-gutter: stable;
+  padding-right: 10px;
+  list-style-type: none;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: antiquewhite;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #19b3e6;
+  }
+}
+
+.placeholder {
+  width: 6rem;
+  height: 1rem;
+  background: rgb(25, 179, 230, 0.15);
+  animation: placeholder 1.5s infinite alternate;
+}
+
+@keyframes placeholder {
+  0% {
+    background: rgba(25, 179, 230, 0.15);
+  }
+  100% {
+    background: rgba(25, 179, 230, 0.55);
+  }
 }

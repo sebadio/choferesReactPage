@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import "./Navbar.css";
-import { UserContext } from "..";
+import { UserContext } from ".";
 
 const Placeholder = () => {
   return <li className="placeholder"></li>;
@@ -12,7 +11,7 @@ const Navbar = () => {
 
   if (loading) {
     return (
-      <nav>
+      <nav style={{ padding: " 0 1rem", justifyContent: "center" }}>
         <ul>
           <Placeholder />
           <Placeholder />
@@ -22,8 +21,8 @@ const Navbar = () => {
     );
   } else {
     return (
-      <nav>
-        <ul>
+      <nav style={{ padding: " 0 1rem", justifyContent: "center" }}>
+        <ul style={{ gap: "2rem" }}>
           <li>
             <Link to="/">Home</Link>
           </li>

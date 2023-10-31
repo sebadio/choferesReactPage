@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../components";
 
@@ -98,18 +98,14 @@ export const useUserAuth = () => {
     event.preventDefault();
     const { elements } = event.currentTarget;
 
-    console.log({ elements });
-
     const usernameInput = elements.namedItem("username") as HTMLInputElement;
     const isUsernameInput = usernameInput instanceof HTMLInputElement;
-    console.log({ usernameInput, isUsernameInput });
 
     if (!isUsernameInput || usernameInput == null)
       return { username: "", password: "", error: true };
 
     const passwordInput = elements.namedItem("password") as HTMLInputElement;
     const isPasswordInput = passwordInput instanceof HTMLInputElement;
-    console.log({ passwordInput, isPasswordInput });
 
     if (!isPasswordInput || passwordInput == null)
       return { username: "", password: "", error: true };
@@ -146,6 +142,7 @@ export const useUserAuth = () => {
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", username);
         setLoggedIn(true);
+        setTfa(data.tfa);
         setUsername(username);
         navigate("/userProfile");
       }
@@ -160,7 +157,7 @@ export const useUserAuth = () => {
     setLoggedIn(false);
     setUsername("");
     setToken("");
-    window.location.href = "/";
+    navigate("/");
   };
 
   return { checkUserToken, login, register, logout };

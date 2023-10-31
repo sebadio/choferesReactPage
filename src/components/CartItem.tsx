@@ -1,4 +1,4 @@
-import { CartItemInterface, ChoferInterface } from "../../interfaces";
+import { CartItemInterface, ChoferInterface } from "../interfaces";
 
 export const CartItem = ({
   item,
@@ -10,28 +10,31 @@ export const CartItem = ({
   handleSubtractQuantity: (Chofer: ChoferInterface) => void;
 }) => {
   return (
-    <li key={item.Chofer.id}>
+    <li className="grid" key={item.Chofer.id}>
       <span>
         <strong>{item.Chofer.name}</strong> ~ ${item.Chofer.price} x{" "}
         {item.quantity}
       </span>
 
-      <div>
+      <div className="grid m">
         <button
-          id="addBtn"
-          onClick={() => {
-            handleAddToCart(item.Chofer);
-          }}
-        >
-          +
-        </button>
-        <button
+          role="button"
           id="subtractBtn"
           onClick={() => {
             handleSubtractQuantity(item.Chofer);
           }}
         >
           -
+        </button>
+
+        <button
+          role="button"
+          id="addBtn"
+          onClick={() => {
+            handleAddToCart(item.Chofer);
+          }}
+        >
+          +
         </button>
       </div>
     </li>

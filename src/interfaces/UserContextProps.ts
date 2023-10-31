@@ -8,6 +8,7 @@ export interface UserContextProps {
   handleSubtractQuantity: (chofer: ChoferInterface) => void;
   loading: boolean;
   loggedIn: boolean;
+  setCart: (cart: CartItemInterface[]) => void;
   setChoferes: (choferes: ChoferInterface[]) => void;
   setLoading: (loading: boolean) => void;
   setLoggedIn: (loggedIn: boolean) => void;

@@ -1,8 +1,8 @@
-import { CartForm } from "./CartForm/CartForm";
-import { CartItem } from "./CartItem/CartItem";
-import { ChoferItem, ChoferItemPlaceholder } from "./ChoferItem/ChoferItem";
-import Navbar from "./Navbar/Navbar";
-import { UserContext, UserProvider } from "./UserProvider/UserProvider";
+import { CartForm } from "./CartForm";
+import { CartItem } from "./CartItem";
+import { ChoferItem, ChoferItemPlaceholder } from "./ChoferItem";
+import Navbar from "./Navbar";
+import { UserContext, UserProvider } from "./UserProvider";
 
 export {
   CartForm,

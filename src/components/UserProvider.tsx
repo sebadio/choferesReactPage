@@ -1,9 +1,9 @@
 import { useState, ReactNode } from "react";
-import { ChoferInterface } from "../../interfaces";
-import { useCart } from "../../hooks/useCart";
+import { ChoferInterface } from "../interfaces";
+import { useCart } from "../hooks/useCart";
 
 import { createContext } from "react";
-import { UserContextProps } from "../../interfaces";
+import { UserContextProps } from "../interfaces";
 
 export const UserContext = createContext<UserContextProps>({
   BASE_URL: "",
@@ -22,12 +22,13 @@ export const UserContext = createContext<UserContextProps>({
   token: "",
   username: "",
   setLoading: () => {},
+  setCart: () => {},
 });
 
 export const UserProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const { cart, handleAddToCart, handleSubtractQuantity } = useCart();
+  const { cart, handleAddToCart, handleSubtractQuantity, setCart } = useCart();
   const [choferes, setChoferes] = useState<ChoferInterface[]>([]);
   const [token, setToken] = useState<string>("");
   const [username, setUsername] = useState<string>("");
@@ -45,6 +46,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
         handleSubtractQuantity,
         loading,
         loggedIn,
+        setCart,
         setChoferes,
         setLoading,
         setLoggedIn,

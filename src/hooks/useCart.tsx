@@ -13,8 +13,11 @@ export const useCart = () => {
         return item;
       });
       setCart(newCart);
+      localStorage.setItem("cart", JSON.stringify(newCart));
     } else {
-      setCart([...cart, { Chofer: chofer, quantity: 1 }]);
+      const newCart = [...cart, { Chofer: chofer, quantity: 1 }];
+      setCart(newCart);
+      localStorage.setItem("cart", JSON.stringify(newCart));
     }
   };
 
@@ -26,13 +29,17 @@ export const useCart = () => {
 
       return item;
     });
-
-    setCart(newCart.filter((item: CartItemInterface) => item.quantity > 0));
+    const filteredCart = newCart.filter(
+      (item: CartItemInterface) => item.quantity > 0
+    );
+    setCart(filteredCart);
+    localStorage.setItem("cart", JSON.stringify(filteredCart));
   };
 
   return {
     cart,
     handleAddToCart,
     handleSubtractQuantity,
+    setCart,
   };
 };

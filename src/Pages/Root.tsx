@@ -1,11 +1,6 @@
 import { useContext, useState } from "react";
-import { ChoferInterface } from "../../interfaces";
-import {
-  ChoferItem,
-  UserContext,
-  ChoferItemPlaceholder,
-} from "../../components";
-import "./Root.css";
+import { ChoferInterface } from "../interfaces";
+import { ChoferItem, UserContext, ChoferItemPlaceholder } from "../components";
 
 function Root() {
   const { choferes, setChoferes } = useContext(UserContext);
@@ -33,11 +28,11 @@ function Root() {
 
   return (
     <main>
-      <h1>Tienda</h1>
+      <h1 style={{ textAlign: "center" }}>Tienda</h1>
 
       {error && <p>{error}</p>}
 
-      <section>
+      <section className="choferes-grid">
         {choferes.length === 0
           ? Array.from({ length: 20 }).map((_, index) => {
               return <ChoferItemPlaceholder key={index} />;
