@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import { RoutesInterface } from "./interfaces";
+import { RouteInterface } from "./interfaces";
 import { useUserAuth } from "./hooks";
 import { useEffect, useContext } from "react";
 import { UserContext } from "./components";
 
-function App({ routes }: { routes: RoutesInterface[] }) {
+function App({ routes }: { routes: RouteInterface[] }) {
   const { checkUserToken } = useUserAuth();
   const { setCart } = useContext(UserContext);
   useEffect(() => {

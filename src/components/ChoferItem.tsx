@@ -53,7 +53,6 @@ const ChoferItem = ({ Chofer }: { Chofer: ChoferInterface }) => {
       <p>${price}</p>
 
       <footer>
-        {" "}
         <button
           aria-label="Add to cart"
           onClick={() => {

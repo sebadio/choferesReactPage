@@ -7,7 +7,7 @@ const Placeholder = () => {
 };
 
 const Navbar = () => {
-  const { loggedIn, username, loading } = useContext(UserContext);
+  const { loggedIn, loading } = useContext(UserContext);
 
   if (loading) {
     return (
@@ -32,7 +32,7 @@ const Navbar = () => {
           {loggedIn ? (
             <li>
               <Link style={{ textTransform: "capitalize" }} to="/userProfile">
-                {username} Profile
+                Profile
               </Link>
             </li>
           ) : (

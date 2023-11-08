@@ -1,4 +1,6 @@
+import { CredentialResponse } from "@react-oauth/google";
 import { useContext } from "react";
+import { useGoogleDecode } from ".";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../components";
 
@@ -8,14 +10,17 @@ export const useUserAuth = () => {
   const {
     BASE_URL,
     loggedIn,
+    setLoading,
     setLoggedIn,
     setTfa,
     setToken,
     setUsername,
     token,
     username,
-    setLoading,
+    setCart,
   } = useContext(UserContext);
+
+  const { decodeGoogleResponse } = useGoogleDecode();
 
   const checkUserToken = async () => {
     if (!username && !token && !loggedIn) {
@@ -34,8 +39,6 @@ export const useUserAuth = () => {
         });
 
         const data = await res.json();
-
-        console.log(data);
 
         if (data.ok) {
           setTfa(data.tfa.tfa);
@@ -57,10 +60,8 @@ export const useUserAuth = () => {
 
     if (error) return;
 
-    console.log({ username, password });
-
     try {
-      const res = await fetch("https://tienda-obli.sebasdiaz.com/register", {
+      const res = await fetch(`${BASE_URL}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -69,8 +70,6 @@ export const useUserAuth = () => {
       });
 
       const data = await res.json();
-
-      console.log(data);
 
       if (data.error) {
         throw new Error(data.error);
@@ -132,13 +131,22 @@ export const useUserAuth = () => {
 
       const data = await res.json();
 
+      if (res.status === 401 || res.status === 400) {
+        alert(data.message);
+        return;
+      }
+
       console.log({ data });
 
       if (data.error) {
         throw new Error(data.error);
       }
 
-      if (data.ok) {
+      if (data.ok && data.tfa) {
+        navigate(
+          `/tfa?ud=${btoa(JSON.stringify({ username, token: data.token }))}`
+        );
+      } else if (data.ok && !data.tfa) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", username);
         setLoggedIn(true);
@@ -154,11 +162,50 @@ export const useUserAuth = () => {
   const logout = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("token");
+    localStorage.removeItem("cart");
+    setCart([]);
     setLoggedIn(false);
     setUsername("");
     setToken("");
     navigate("/");
   };
 
-  return { checkUserToken, login, register, logout };
+  const googleLogin = async (credentialResponse: CredentialResponse) => {
+    const { email } = decodeGoogleResponse(credentialResponse);
+    const res = await fetch(`${BASE_URL}/googleLogin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username: email }),
+    });
+
+    const data = await res.json();
+
+    if (!data.ok) return;
+
+    if (data.tfa) {
+      navigate(
+        `/tfa?ud=${btoa(
+          JSON.stringify({ username: email, token: data.token })
+        )}`
+      );
+    } else {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("username", email);
+      setLoggedIn(true);
+      setTfa(data.tfa);
+      setUsername(email);
+      navigate("/userProfile");
+    }
+  };
+
+  return {
+    checkUserToken,
+    decodeGoogleResponse,
+    googleLogin,
+    login,
+    logout,
+    register,
+  };
 };

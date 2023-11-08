@@ -32,9 +32,14 @@ export const useQr = () => {
 
     if (!response.ok) return;
 
-    const { qr } = await response.json();
+    const data = await response.json();
 
-    setQrcode(qr);
+    if (response.status === 401 || response.status === 409) {
+      alert(data.message);
+      return;
+    }
+
+    setQrcode(data.qr);
   };
 
   const handleVerifyQr = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -91,12 +96,16 @@ export const useQr = () => {
 
     if (!response.ok) return;
 
-    const { ok } = await response.json();
+    const data = await response.json();
 
-    if (!ok) return;
+    if (response.status === 401 || response.status === 409) {
+      alert(data.message);
+      return;
+    }
+
+    if (data.ok) return;
 
     setTfa(false);
-
     setQrcode("");
   };
 

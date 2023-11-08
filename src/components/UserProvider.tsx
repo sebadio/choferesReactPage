@@ -1,9 +1,6 @@
-import { useState, ReactNode } from "react";
-import { ChoferInterface } from "../interfaces";
-import { useCart } from "../hooks/useCart";
-
-import { createContext } from "react";
-import { UserContextProps } from "../interfaces";
+import { ChoferInterface, UserContextProps } from "../interfaces";
+import { useCart } from "../hooks";
+import { useState, ReactNode, createContext } from "react";
 
 export const UserContext = createContext<UserContextProps>({
   BASE_URL: "",
@@ -13,7 +10,9 @@ export const UserContext = createContext<UserContextProps>({
   handleSubtractQuantity: () => {},
   loading: true,
   loggedIn: false,
+  setCart: () => {},
   setChoferes: () => {},
+  setLoading: () => {},
   setLoggedIn: () => {},
   setTfa: () => {},
   setToken: () => {},
@@ -21,20 +20,18 @@ export const UserContext = createContext<UserContextProps>({
   tfa: false,
   token: "",
   username: "",
-  setLoading: () => {},
-  setCart: () => {},
 });
 
 export const UserProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const { cart, handleAddToCart, handleSubtractQuantity, setCart } = useCart();
   const [choferes, setChoferes] = useState<ChoferInterface[]>([]);
-  const [token, setToken] = useState<string>("");
-  const [username, setUsername] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [tfa, setTfa] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [token, setToken] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+  const { cart, handleAddToCart, handleSubtractQuantity, setCart } = useCart();
 
   return (
     <UserContext.Provider

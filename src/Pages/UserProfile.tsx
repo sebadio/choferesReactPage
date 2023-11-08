@@ -21,7 +21,6 @@ const UserProfile = () => {
         style={{
           display: "inline-block",
           marginRight: "1rem",
-          textTransform: "capitalize",
         }}
       >
         {username}'s Profile

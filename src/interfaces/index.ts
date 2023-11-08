@@ -1,11 +1,13 @@
 import { CartItemInterface } from "./CartItemInterface";
 import { ChoferInterface } from "./ChoferInterface";
-import { RoutesInterface } from "./RoutesInterface";
+import { RouteInterface } from "./RouteInterface";
 import { UserContextProps } from "./UserContextProps";
+import { CartFormProps } from "./CartFormProps";
 
 export type {
+  CartFormProps,
   CartItemInterface,
   ChoferInterface,
-  RoutesInterface,
+  RouteInterface,
   UserContextProps,
 };
